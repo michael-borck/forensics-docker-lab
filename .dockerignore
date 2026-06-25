@@ -1,0 +1,14 @@
+# macOS AppleDouble / metadata files — these are created on non-APFS volumes
+# (exFAT/FAT32 external drives, network shares) and break the Docker build
+# context because the builder cannot read their xattrs.
+._*
+**/._*
+.DS_Store
+**/.DS_Store
+
+# Version control & editor cruft
+.git
+.gitignore
+.vscode/
+.idea/
+*.swp

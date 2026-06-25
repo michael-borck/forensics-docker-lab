@@ -13,6 +13,14 @@ format:
 
 **Tools:** Sleuth Kit (fls, icat, fsstat), ewf-tools, strings, grep
 
+> **ℹ️ About the example outputs in this walkthrough:** The hashes, filenames,
+> and counts shown are *illustrative* — captured from one specific evidence
+> image. **Your actual values will differ** depending on the exact evidence you
+> analyse. That is expected: the skill being taught is the *method* (which
+> command, what to look for), not matching a fixed answer. Record YOUR real
+> outputs in your report and `analysis_log.csv`. Generate the evidence first
+> with `make evidence` (see `docs/evidence-sources.md`).
+
 ---
 
 ## 📸 Context: How Evidence is Captured (In Real Forensic Practice)
@@ -169,7 +177,7 @@ md5sum /evidence/usb.E01
 - SHA256_Hash: (you'll add this next)
 - Analyst_Name: (your name)
 - Date_Received: (today's date)
-- Case_Number: CLOUDCORE-2024-INS-001
+- Case_Number: CLOUDCORE-2009-INS-001
 - Evidence_Description: Encase E01 image of USB drive
 - Storage_Location: /evidence/usb.E01
 

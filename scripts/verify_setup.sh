@@ -3,9 +3,19 @@
 # Run this to verify your Docker environment is properly configured
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "  Week 7 Forensics Lab - Environment Verification"
+echo "  Forensics Lab - Environment Verification"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
+
+# macOS on non-APFS volumes (exFAT/FAT/network shares) litters AppleDouble
+# "._*" files. BuildKit fails to read their xattrs during the context walk,
+# which breaks `docker compose build` even though .dockerignore lists them.
+# These are pure resource-fork companions (real data is in the non-prefixed
+# file), so removing them is safe and keeps the build working everywhere.
+if [ "$(uname -s)" = "Darwin" ]; then
+    find . -name '._*' -not -path './.git/*' -delete 2>/dev/null
+    find . -name '.DS_Store' -not -path './.git/*' -delete 2>/dev/null
+fi
 
 # Colors for output
 RED='\033[0;31m'
@@ -50,8 +60,8 @@ check "Evidence directory exists"
 [ -d "./cases" ]
 check "Cases directory exists"
 
-[ -f "./Dockerfile" ]
-check "Dockerfile exists"
+[ -f "./images/dfir-cli/Dockerfile" ]
+check "Dockerfile exists (images/dfir-cli/Dockerfile)"
 
 [ -f "./docker-compose.yml" ]
 check "docker-compose.yml exists"
@@ -111,6 +121,23 @@ check "coc-log utility is available in container"
 check "analysis_log.csv template exists"
 echo ""
 
+# 10. Evidence readiness (informational — does not fail verification,
+#     because USB evidence is generated on demand and memory is downloaded)
+echo "Checking evidence readiness (informational)..."
+if [ -f "./evidence/usb.img" ] && [ -f "./evidence/usb.E01" ]; then
+    echo -e "${GREEN}✓${NC} USB evidence present (evidence/usb.img, usb.E01) — Lab 1 ready"
+else
+    echo -e "${YELLOW}ℹ${NC}  USB evidence not found — run ${GREEN}make evidence${NC} to generate it (Lab 1)"
+fi
+if [ -f "./evidence/memory.raw" ]; then
+    echo -e "${GREEN}✓${NC} Memory dump present (evidence/memory.raw) — Lab 2 ready"
+else
+    echo -e "${YELLOW}ℹ${NC}  memory.raw not found — download a sample (see ${GREEN}docs/evidence-sources.md${NC}) to enable Lab 2"
+fi
+[ -f "./evidence/network.cap" ] && echo -e "${GREEN}✓${NC} network.cap present — Lab 4 ready" || echo -e "${YELLOW}ℹ${NC}  network.cap not found"
+[ -f "./evidence/mail.mbox" ]  && echo -e "${GREEN}✓${NC} mail.mbox present — Lab 3 ready"   || echo -e "${YELLOW}ℹ${NC}  mail.mbox not found"
+echo ""
+
 # Summary
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  Verification Summary"
@@ -125,8 +152,9 @@ if [ $FAILED -eq 0 ]; then
     echo ""
     echo "Next steps:"
     echo "  1. Read docs/scenario.md for the case background"
-    echo "  2. Explore the cases/ directory for available cases"
-    echo "  3. Start your investigation:"
+    echo "  2. Generate USB evidence:  make evidence   (Lab 1)"
+    echo "  3. Get a memory sample:    see docs/evidence-sources.md  (Lab 2)"
+    echo "  4. Start your investigation:"
     echo "     • Recommended: ./scripts/forensics-workstation"
     echo "     • Advanced: docker compose run --rm dfir"
     echo ""

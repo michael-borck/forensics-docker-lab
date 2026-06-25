@@ -7,12 +7,17 @@
 
 ## Quick Repo Setup
 1. Clone: `git clone <repo-url> && cd forensics-docker-lab`
-2. Build forensic workstation: `docker compose build dfir` (builds toolbox; ~5min)
-3. Create dirs: `mkdir -p evidence cases rules`
-4. Add evidence (see STORYLINE.md/Lab READMEs):
-   - Run `bash scripts/make_practice_image.sh` (sudo needed) for usb.img.
-   - Download/copy memory.raw, network.cap, mail.mbox, logs/ (or use dummies).
-5. Baseline hashes: `docker compose run --rm hashlog` (logs to cases/chain_of_custody.csv)
+2. Build the forensic workstation: `make setup`
+   (runs `docker compose build`; ~2-5 min on first build)
+3. Generate the USB evidence (Lab 1): `make evidence`
+   → creates `evidence/usb.img` (FAT32, with recoverable deleted files)
+     and `evidence/usb.E01`. Needs no `sudo` and no host filesystem tools.
+4. Get a memory dump (Lab 2): see **`docs/evidence-sources.md`**, download a
+   free sample, and place it at `evidence/memory.raw`.
+   (Email, logs and `network.cap` are already included for Labs 3 & 4.)
+5. Verify everything: `make verify`
+6. (Optional) Record baseline evidence hashes with `coc-log` inside the
+   workstation — it appends to `cases/<lab>/chain_of_custody.csv`.
 
 ## Interactive Workstation Usage (Recommended)
 
@@ -33,7 +38,7 @@ You'll see a banner with available tools and get an interactive bash prompt:
 
   🔍 Tools Installed:
     • Sleuth Kit (fls, icat, fsstat, tsk_recover, mmls, blkls)
-    • Volatility 3 (vol -f /evidence/memory.raw ...)
+    • Volatility 2 & 3 (vol2 / vol3 -f /evidence/memory.raw ...)
     ...
 
 analyst@forensics-lab:/cases$
@@ -84,10 +89,10 @@ exit
 Verify: No errors; evidence/ owned by user (PUID/PGID in .env).
 
 ## Optional Services
-- **Autopsy GUI**: `docker compose up -d novnc autopsy` → http://localhost:8080/vnc.html
+- **Autopsy GUI**: `make gui` (runs `docker compose up -d novnc autopsy`) → http://localhost:8080/vnc.html. Stop with `make gui-stop`.
 - **Plaso/Volatility**: Run as needed (see lab READMEs)
 
 ## Troubleshooting
-See TROUBLESHOOTING.md.
+See troubleshooting.md.
 
 For full labs, follow per-lab READMEs. Run `git pull` for updates.

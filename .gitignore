@@ -23,6 +23,8 @@ _archive
 .git/
 #*.log
 .DS_Store
+._*
+**/._*
 
 # IDE/editor
 .vscode/

@@ -13,6 +13,11 @@ format:
 
 **Tools:** tshark, wireshark, strings, grep
 
+> **ℹ️ About the example outputs in this walkthrough:** The packet counts,
+> IPs, hashes, and protocol stats shown are *illustrative*. Your actual values
+> depend on the `network.cap` provided (or any PCAP you substitute). Record
+> YOUR real outputs in your report and `analysis_log.csv`.
+
 ---
 
 ## 📸 Context: Network Traffic Capture in Forensic Practice
@@ -190,7 +195,7 @@ md5sum /evidence/network.cap
 - SHA256_Hash: (you'll add this next)
 - Analyst_Name: (your name)
 - Date_Received: (today's date)
-- Case_Number: CLOUDCORE-2024-INS-001
+- Case_Number: CLOUDCORE-2009-INS-001
 - Evidence_Description: Wireshark/Tshark Network Packet Capture
 - Storage_Location: /evidence/network.cap
 

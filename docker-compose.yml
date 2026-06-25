@@ -9,7 +9,7 @@ services:
     build:
       context: .
       dockerfile: images/dfir-cli/Dockerfile
-    image: forensic/dfir-cli:latest
+    image: ${DFIR_IMAGE:-ghcr.io/michael-borck/dfir-cli:latest}  # prebuilt on GHCR; falls back to `build` below
     user: root                      # FUSE requires root for fusermount
     read_only: false                # FUSE needs write access to /dev, /sys, /run
     working_dir: /cases

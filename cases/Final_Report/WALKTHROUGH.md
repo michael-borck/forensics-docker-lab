@@ -13,6 +13,12 @@ format:
 
 **Tools:** Text editor, spreadsheet application, all previous labs
 
+> **ℹ️ About the example findings in this walkthrough:** The timeline entries
+> and conclusions shown are *illustrative* of one possible investigation. Your
+> final report must be built from **your own** findings across Labs 1–4. The
+> specific PIDs, filenames, and timestamps you found will differ — that is
+> expected.
+
 ---
 
 ## 🎯 Mission
@@ -139,7 +145,7 @@ Create a comprehensive timeline showing WHEN attacks happened.
 
 ```
 CLOUDCORE INCIDENT TIMELINE
-Case: CLOUDCORE-2024-INS-001
+Case: CLOUDCORE-2009-INS-001
 
 === PHASE 1: MALWARE INSTALLATION ===
 [2009-12-05 02:11:23 UTC] - Keylogger installed and started

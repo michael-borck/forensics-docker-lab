@@ -58,9 +58,9 @@ check_docker() {
 
 check_evidence_files() {
   if [ ! -f "$PROJECT_ROOT/evidence/usb.img" ] && [ ! -f "$PROJECT_ROOT/evidence/usb.E01" ]; then
-    echo -e "${YELLOW}⚠ Warning: No evidence files found in evidence/ directory${NC}"
-    echo "  Expected: usb.img or usb.E01"
-    echo "  Students should copy evidence files from OneDrive to evidence/ folder"
+    echo -e "${YELLOW}⚠ Warning: No USB evidence found in evidence/ (Lab 1)${NC}"
+    echo "  Generate it with: make evidence   (see docs/evidence-sources.md)"
+    echo "  (Labs 3 & 4 use included evidence; Lab 2 needs a downloaded memory sample)"
     echo
     read -p "Continue anyway? (y/n) " -n 1 -r
     echo

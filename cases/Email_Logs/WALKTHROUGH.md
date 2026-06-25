@@ -13,6 +13,11 @@ format:
 
 **Tools:** grep, awk, Python, text analysis tools
 
+> **ℹ️ About the example outputs in this walkthrough:** The exact email
+> contents, headers, and log lines shown are *illustrative*. Your actual
+> findings depend on the `mail.mbox` and logs provided. Record YOUR real
+> outputs in your report and `analysis_log.csv`.
+
 ---
 
 ## 📸 Context: How Email and Logs are Captured (In Real Forensic Practice)
@@ -181,7 +186,7 @@ md5sum /evidence/mail.mbox
 - SHA256_Hash: (you'll add this next)
 - Analyst_Name: (your name)
 - Date_Received: (today's date)
-- Case_Number: CLOUDCORE-2024-INS-001
+- Case_Number: CLOUDCORE-2009-INS-001
 - Evidence_Description: Email Capture (mbox format)
 - Storage_Location: /evidence/mail.mbox
 

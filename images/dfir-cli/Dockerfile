@@ -11,6 +11,8 @@ RUN apt-get update && \
       testdisk \
       foremost \
       ewf-tools \
+      dosfstools \
+      mtools \
       exiftool \
       hashdeep \
       yara \
@@ -33,8 +35,8 @@ RUN apt-get update && \
 RUN git clone https://github.com/volatilityfoundation/volatility.git /opt/volatility2 \
     && cd /opt/volatility2 \
     && git checkout 2.6.1 \
-    && ln -s /opt/volatility2/vol.py /usr/local/bin/vol2 \
-    && chmod +x /opt/volatility2/vol.py
+    && printf '#!/bin/sh\nexec python2.7 /opt/volatility2/vol.py "$@"\n' > /usr/local/bin/vol2 \
+    && chmod +x /usr/local/bin/vol2 /opt/volatility2/vol.py
 
 # Install Python 2.7 dependencies for Volatility 2
 RUN curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py && \
