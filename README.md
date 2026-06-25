@@ -510,8 +510,8 @@ docker compose build --no-cache
 ### Getting More Help
 
 - **Lab Session:** Ask instructor or TAs
-- **Office Hours:** See course syllabus for times
-- **LMS Forum:** Post technical questions
+- **Support availability:** see course schedule for times
+- **Course forum:** Post technical questions
 - **Documentation:** Review `docs/COMMANDS.md`, `docs/SCENARIO.md`, lab WALKTHROUGH.md
 
 See **`docs/TROUBLESHOOTING.md`** for more detailed troubleshooting.
@@ -597,13 +597,13 @@ git checkout instructor
 - Check `docs/troubleshooting.md`
 - Review error messages carefully
 - Search error online (with "docker" + tool name)
-- Post on LMS forum with: OS, error message, what you were trying, what you've tried
+- Post on course forum with: OS, error message, what you were trying, what you've tried
 
 **Forensic Concepts:**
 - Review `docs/scenario.md` and `docs/storyline.md`
-- Attend lab session and office hours
+- Attend a lab session or contact support
 - Check tool documentation (Sleuth Kit, Volatility, etc.)
-- Ask on LMS forum
+- Ask on course forum
 
 **Lab-Specific Help:**
 - Review that lab's `README.md`

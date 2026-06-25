@@ -78,7 +78,7 @@ All tools are pre-installed in the Docker forensic environment - see README.md f
 - Calculate MD5 hash of `/evidence/usb.E01`
 - Calculate SHA256 hash of `/evidence/usb.E01`
 - Verify E01 internal integrity using `ewfverify`
-- Document current date, time, and your student ID as analyst ID
+- Document current date, time, and your analyst ID as analyst ID
 
 #### 1.2 Create Chain of Custody Documentation
 
@@ -91,7 +91,7 @@ Create a properly formatted **chain_of_custody.csv** with these fields:
 - MD5_Hash (your calculated value)
 - SHA256_Hash (your calculated value)
 - Analyst_Name (your name)
-- Student_ID (your student ID)
+- Analyst_ID (your analyst ID)
 - Case_Number (CLOUDCORE-2009-INS-001)
 - Evidence_Description (brief description of USB device)
 - Storage_Location ("/evidence - read-only archive")
@@ -316,7 +316,7 @@ StudentID_USB_Triage/
 ### Formatting Guidelines
 
 **Report Format:** Professional document with:
-- Title page (assignment title, your name, student ID, date)
+- Title page (assignment title, your name, analyst ID, date)
 - Table of contents
 - Page numbers
 - Proper headings and subheadings
@@ -391,8 +391,8 @@ Assessment Rubric
 ### Getting Help
 
 - **Scheduled Lab Session:** Hands-on guidance and troubleshooting
-- **Office Hours:** [Insert your office hours]
-- **Discussion Forum:** Course LMS for technical questions
+- **Support availability:** [insert your availability]
+- **Discussion Forum:** course forum for technical questions
 - **Docker Issues:** See README.md troubleshooting section
 
 ### External Resources

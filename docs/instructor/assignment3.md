@@ -103,7 +103,7 @@ Create **master_chain_of_custody.csv** containing evidence from all labs:
 - MD5_Hash
 - SHA256_Hash
 - Analyst_Name
-- Student_ID
+- Analyst_ID
 - Case_Number
 - Evidence_Description
 - File_Format (E01, DMP, PCAP, MBOX, PST, etc.)
@@ -315,7 +315,7 @@ High-level overview suitable for management/legal review:
 
 **Format Standards:**
 
-- Professional title page (case name, student ID, date, classification)
+- Professional title page (case name, analyst ID, date, classification)
 - Table of contents with page numbers
 - Clear section headings and subheadings
 - Properly formatted citations and references
@@ -566,8 +566,8 @@ Before submitting, verify:
 ### Getting Help
 
 - **Assignment 1 & 2 Lab Sessions:** Refer to previous week materials for tool usage questions
-- **Office Hours:** [Insert your office hours]
-- **Discussion Forum:** Course LMS for synthesis and methodology questions
+- **Support availability:** [insert your availability]
+- **Discussion Forum:** course forum for synthesis and methodology questions
 - **Report Template Questions:** Refer to final_report.md template provided
 
 ---

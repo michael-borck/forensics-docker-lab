@@ -96,7 +96,7 @@ Objective: Analyse Windows XP memory image to identify malicious processes and d
     Verify Memory Evidence Integrity
         Calculate MD5 and SHA256 hashes of /evidence/memory.raw
         Document memory image size and acquisition details
-        Record current date, time, and your student ID as analyst ID
+        Record current date, time, and your analyst ID as analyst ID
 
     Identify Memory Profile
         Use Volatility 2 imageinfo to determine the correct Windows profile
@@ -316,7 +316,7 @@ StudentID_Memory_Email_Forensics/
 Formatting Guidelines
 
     Report Format: Professional document with:
-        Title page (assignment title, your name, student ID, date)
+        Title page (assignment title, your name, analyst ID, date)
         Table of contents
         Page numbers
         Proper headings and subheadings
@@ -375,8 +375,8 @@ Reference Materials (in this package)
 Getting Help
 
     Scheduled Lab Sessions: Hands-on guidance with memory and email analysis
-    Office Hours: [Insert your office hours]
-    Discussion Forum: Course LMS for technical questions
+    Support availability: [insert your availability]
+    Discussion Forum: course forum for technical questions
     Docker Issues: See README.md troubleshooting section
 
 External Resources
