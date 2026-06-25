@@ -31,7 +31,7 @@ Each walkthrough contains cross-references to help students correlate findings r
 - Follow `setup.md` to build and test the Docker environment
 - Verify all evidence files are in place:
   - `evidence/usb.img` or `.E01` (disk image)
-  - `evidence/memory.ram` (memory dump)
+  - `evidence/memory.raw` (memory dump)
   - `evidence/network.cap` (PCAP file)
   - `evidence/mail.mbox` (email mailbox)
 - Test the forensics workstation script on your platform (macOS/Linux/Windows)

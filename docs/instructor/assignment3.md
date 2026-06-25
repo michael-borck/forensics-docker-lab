@@ -8,8 +8,8 @@ format:
 
 ## Assessment Overview
 
-- **Weight:** 30% of total course grade
-- **Due Date:** Friday 7th November 2025
+- **Weight:** [adjust to your course] (suggested: 30%)
+- **Due Date:** [set per your schedule]
 - **Submission Type:** Individual
 - **Estimated Time:** 8-10 hours (report synthesis and professional writing)
 
@@ -454,7 +454,7 @@ Before submitting, verify:
 
 ## Assessment Rubric
 
-### Total Points: 30 (30% of final course grade)
+### Total Points: 30 (adjust weighting to your course)
 
 | Component | Points | Description |
 |-----------|--------|-------------|

@@ -2,8 +2,8 @@ Assessment 1 – USB Evidence Triage Report
 
 ## Assessment Overview
 
-- **Weight:** 20% of total course grade
-- **Due Date:** End of Week 7
+- **Weight:** [adjust to your course] (suggested: 20%)
+- **Due Date:** [set per your schedule]
 - **Submission Type:** Individual
 - **Estimated Time:** 8-10 hours (3-hour guided lab + 5-7 hours independent analysis and reporting)
 
@@ -327,7 +327,7 @@ StudentID_USB_Triage/
 
 Assessment Rubric
 
-**Total Points:** 20 (20% of final course grade)
+**Total Points:** 20 (adjust weighting to your course)
 
 | Component | Points | Description |
 |-----------|--------|-------------|
@@ -390,7 +390,7 @@ Assessment Rubric
 
 ### Getting Help
 
-- **Week 7 Lab Session:** Hands-on guidance and troubleshooting
+- **Scheduled Lab Session:** Hands-on guidance and troubleshooting
 - **Office Hours:** [Insert your office hours]
 - **Discussion Forum:** Course LMS for technical questions
 - **Docker Issues:** See README.md troubleshooting section
