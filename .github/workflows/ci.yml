@@ -1,0 +1,64 @@
+# Regression gate: build the image and exercise the labs on every PR / push.
+# Keeps the prebuilt image honest and catches breakage before students hit it.
+#
+# This complements docker.yml: that workflow PUBLISHES the image on merge to
+# main; this one VALIDATES every change (PR or push) actually works end to end.
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the dfir image
+        run: docker compose build dfir
+
+      - name: Generate USB evidence (Lab 1 generator)
+        run: make evidence
+
+      - name: Environment + tool verification (make verify)
+        # verify_setup.sh exits non-zero if any hard check fails.
+        run: make verify
+
+      - name: Lab 1 recovery smoke test (inode-agnostic)
+        run: |
+          docker compose run --rm dfir bash -c '
+            set -e
+            # deleted files are visible to fls
+            fls -r /evidence/usb.img | grep -q "project_secrets"
+            # deleted content is recoverable (name may be mangled by FAT deletion)
+            mkdir -p /tmp/rec
+            tsk_recover /evidence/usb.img /tmp/rec >/dev/null 2>&1
+            grep -rq "FLAG{digital_forensics_cloudcore_case_2009}" /tmp/rec
+            # E01 integrity
+            ewfverify /evidence/usb.E01 2>&1 | grep -qi "success"
+            echo "Lab 1 recovery OK"
+          '
+
+      - name: Volatility smoke test (Lab 2 tooling)
+        run: |
+          docker compose run --rm dfir vol2 --info >/dev/null
+          docker compose run --rm dfir vol --help   >/dev/null
+          echo "Volatility 2 & 3 OK"
+
+      - name: Network + email evidence readable (Labs 3 & 4)
+        run: |
+          docker compose run --rm dfir bash -c '
+            set -e
+            tshark -r /evidence/network.cap -q -z io,phs >/dev/null 2>&1
+            grep -q "^From:" /evidence/mail.mbox
+            echo "Lab 3 & 4 evidence OK"
+          '

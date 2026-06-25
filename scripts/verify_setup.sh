@@ -170,3 +170,7 @@ else
 fi
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# Exit non-zero if any hard check failed (informational evidence checks above
+# don't increment FAILED). Lets `make verify` gate CI and signal failure.
+exit "$FAILED"
