@@ -5,11 +5,11 @@
 
 ## Case Information
 
-**Case Number:** CLOUDCORE-2024-INS-001
+**Case Number:** CLOUDCORE-2009-INS-001
 **Incident Type:** Suspected Data Exfiltration
 **Investigation Status:** Active Triage
 **Lead Investigator:** [Your Name - Student Analyst]
-**Date Opened:** January 16, 2024
+**Date Opened:** December 7, 2009
 
 ---
 
@@ -30,14 +30,14 @@ Cloudcore handles sensitive data including:
 
 ### Initial Alert
 
-On **Monday, January 16, 2024 at 8:00 AM**, Cloudcore's IT Security Team received a tip from an internal whistleblower regarding a potential data breach. The whistleblower reported that a recently terminated employee may have exfiltrated sensitive client data via USB storage device before leaving the company premises.
+On **Monday, December 7, 2009 at 8:00 AM**, Cloudcore's IT Security Team received a tip from an internal whistleblower regarding a potential data breach. The whistleblower reported that a recently terminated employee may have exfiltrated sensitive client data via USB storage device before leaving the company premises.
 
 ### The Suspect
 
-An employee (identity redacted for educational purposes) was terminated on **January 15, 2024** for documented performance issues. During the exit process, the following suspicious activities were noted:
+An employee (identity redacted for educational purposes) was terminated on **December 6, 2009** for documented performance issues. During the exit process, the following suspicious activities were noted:
 
 - **Unusual Access Patterns:** Security logs showed the employee accessing multiple workstations outside normal business hours during their final two weeks of employment
-- **Last System Access:** January 14, 2024 at 9:47 PM (well after standard business hours)
+- **Last System Access:** December 5, 2009 at 9:47 PM (well after standard business hours)
 - **Authorized Access:** The employee had legitimate access to sensitive systems including:
   - Client database export tools
   - Financial reporting systems
@@ -46,7 +46,7 @@ An employee (identity redacted for educational purposes) was terminated on **Jan
 
 ### Evidence Recovery
 
-During a routine workspace audit conducted on January 16, 2024, a concealed USB storage device was discovered in the employee's desk drawer.
+During a routine workspace audit conducted on December 7, 2009, a concealed USB storage device was discovered in the employee's desk drawer.
 
 **Physical Evidence Details:**
 - **Device:** SanDisk Cruzer Blade USB 2.0 Flash Drive
@@ -201,7 +201,7 @@ This is **NOT** a full forensic examination. Advanced techniques (memory forensi
 
 - **In-Lab Session:** 3 hours (Week 7 practical)
 - **Independent Work:** 5-7 additional hours (report writing, detailed analysis)
-- **Submission Deadline:** End of Week 7
+- **Submission Deadline:** [set per your schedule]
 
 ### Resource Constraints
 

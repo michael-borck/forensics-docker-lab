@@ -459,5 +459,4 @@ foremost --help
 
 ---
 
-*Last updated: October 2024*
 *Forensics Lab Cheatsheet v1.0*

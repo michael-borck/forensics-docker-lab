@@ -432,7 +432,7 @@
             <div class="download-section">
                 <h3>📥 Step 0: Verify Evidence File</h3>
                 <p><strong>Evidence File:</strong> cloudcore_suspect_usb.E01 (Cloudcore Investigation)</p>
-                <p>This E01 file contains the forensic image from Case CLOUDCORE-2024-INS-001.</p>
+                <p>This E01 file contains the forensic image from Case CLOUDCORE-2009-INS-001.</p>
                 
                 <div class="command-box">
 # Verify the E01 evidence file is present
@@ -443,7 +443,7 @@ ls -lh evidence/cloudcore_suspect_usb.E01
                 </div>
 
                 <div class="info-box">
-                    <strong>Note:</strong> The cloudcore_suspect_usb.E01 file contains the forensic image of the seized USB device from the Cloudcore investigation (Case: CLOUDCORE-2024-INS-001). This E01 format includes embedded metadata, hash verification, and compression.
+                    <strong>Note:</strong> The cloudcore_suspect_usb.E01 file contains the forensic image of the seized USB device from the Cloudcore investigation (Case: CLOUDCORE-2009-INS-001). This E01 format includes embedded metadata, hash verification, and compression.
                 </div>
             </div>
             
@@ -895,7 +895,7 @@ SHA256: 6ebe35fef52afd133563a9f8a21c6b2f6e227146ffa8289b6feee5ecbe23607a"></text
 
 ## Evidence Summary
 - **File:** cloudcore_suspect_usb.E01
-- **Source:** Cloudcore Inc. Investigation (CLOUDCORE-2024-INS-001)
+- **Source:** Cloudcore Inc. Investigation (CLOUDCORE-2009-INS-001)
 - **Format:** Expert Witness Format (E01)
 
 ## Findings & Observations
@@ -927,7 +927,7 @@ Refer to: cases/chain_of_custody.csv
         // Export CSV template
         function exportCSV() {
             const csvContent = `Evidence_ID,Date_Received,Time_Received,Received_From,MD5_Hash,SHA256_Hash,Analyst_Name,Case_Number,Evidence_Description,Storage_Location
-UBNIST1-001,${new Date().toISOString().split('T')[0]},${new Date().toTimeString().slice(0,8)},Digital Corpora,[MD5_HASH],[SHA256_HASH],[Your Name],LAB6-2024,UBNIST1 Gen3 IMG Test Image,./evidence/
+UBNIST1-001,${new Date().toISOString().split('T')[0]},${new Date().toTimeString().slice(0,8)},Digital Corpora,[MD5_HASH],[SHA256_HASH],[Your Name],LAB6-2009,UBNIST1 Gen3 IMG Test Image,./evidence/
 `;
             
             const blob = new Blob([csvContent], { type: 'text/csv' });

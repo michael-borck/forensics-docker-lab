@@ -308,5 +308,4 @@ pwsh scripts/forensics-workstation.ps1
 
 ---
 
-*Last Updated: October 22, 2025*
 *Part of Forensics Docker Lab Polish Initiative*

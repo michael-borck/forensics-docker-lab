@@ -37,7 +37,7 @@ You'll be prompted for your analyst name, then you're ready to work.
 3. **`cases/USB_Imaging/timeline.csv`** (export from psort).
 4. **Recovered artifacts** folder (`cases/USB_Imaging/tsk_recover_out` and/or `cases/USB_Imaging/foremost_out`).
 
-> Tip: Put your student ID and name in the first line of each Markdown file.
+> Tip: Put your analyst ID and name in the first line of each Markdown file.
 >
 > **Interactive Guide:** Open `guides/worksheet.html` in your browser for step-by-step guided practice.
 

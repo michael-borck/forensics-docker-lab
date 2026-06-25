@@ -40,7 +40,7 @@ services:
   # Optional GUI: Autopsy over noVNC in your browser at http://localhost:8080/vnc.html
   # Note: community images vary; if it doesn't start on your OS, keep using CLI tools above.
   autopsy:
-    image: eecs388/autopsy:latest  # More up-to-date and multi-platform
+    image: eecs388/autopsy:latest  # Third-party public image (UMich EECS388); used as the maintained multi-arch Autopsy build
     depends_on:
       - novnc
     environment:

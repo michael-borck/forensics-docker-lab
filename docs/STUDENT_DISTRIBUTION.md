@@ -43,7 +43,7 @@ docker compose run --rm dfir
 ❌ **Risk of students pushing answers** (can be mitigated with .gitignore)
 
 ### Best For:
-- University courses where students know Git
+- Courses where students know Git
 - When you'll push updates during the semester
 - When evidence files can be downloaded separately
 
@@ -246,7 +246,7 @@ zip -r evidence-bundle-v1.0.zip evidence/
 ❌ **Need hosting** for evidence files
 
 ### Best For:
-- **Most university courses** (ideal balance)
+- **Most courses** (ideal balance)
 - When evidence files rarely change
 - When you want version control benefits
 
@@ -296,7 +296,7 @@ Create `.devcontainer/devcontainer.json`:
 
 ## Recommended Distribution Strategy
 
-### For a Typical University Course:
+### For a Typical Course:
 
 **Primary Distribution: Option 4 (Git + Separate Evidence)**
 
@@ -321,7 +321,7 @@ Create `.devcontainer/devcontainer.json`:
    tar -czf evidence-bundle-v1.0.tar.gz evidence/
    ```
 
-4. **Upload evidence** to university file server or cloud storage
+4. **Upload evidence** to institutional file server or cloud storage
 
 5. **Create setup instructions** document (see template below)
 
@@ -421,8 +421,8 @@ Before distributing to students:
 
 ## Evidence Distribution Options
 
-### Option A: University File Server
-**Upload to university web server or FTP**
+### Option A: Institutional File Server
+**Upload to institutional web server or FTP**
 
 Pros: Controlled, fast on campus network, no external dependencies
 Cons: May need IT support, off-campus access may be slow
@@ -515,7 +515,7 @@ Please complete the following setup steps BEFORE our Week 2 lab:
 **Need Help?**
 - Troubleshooting: See TROUBLESHOOTING.md in the repository
 - Discussion Forum: Post questions in Canvas discussions
-- Office Hours: [Your hours here]
+- Support availability: [Your hours here]
 
 **System Requirements:**
 - 10GB free disk space
@@ -537,4 +537,4 @@ Looking forward to seeing you in the lab!
 | Pre-built Docker Image | 10 min | Medium (new image) | Large classes |
 | Cloud Environment | 5 min | Automatic | Online courses |
 
-**Recommendation: Option 4 (Git + Separate Evidence)** for most university forensic courses.
+**Recommendation: Option 4 (Git + Separate Evidence)** for most forensic courses.

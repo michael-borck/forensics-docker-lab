@@ -1,15 +1,15 @@
 Assessment 2 – Memory & Email Forensics Investigation
 Assessment Overview
 
-    Weight: 25% of total course grade
-    Due Date: Friday 24th October 2025
+    Weight: [adjust to your course] (suggested: 25%)
+    Due Date: [set per your schedule]
     Submission Type: Individual
     Estimated Time: 10-12 hours (broken into phases: 4-hour guided lab sessions + 6-8 hours independent analysis and reporting)
 
 Assessment Overview
 
-    Weight: 25% of total course grade (25 points)
-    Due Date: End of Week 10 (Extension available until Week 11 with prior approval)
+    Weight: [adjust to your course] (suggested: 25%, 25 points)
+    Due Date: [set per your schedule]
     Submission Type: Individual
     Estimated Time: 10-12 hours total
         Week 9-10 lab sessions: 4 hours (guided practice)
@@ -96,7 +96,7 @@ Objective: Analyze Windows XP memory image to identify malicious processes and d
     Verify Memory Evidence Integrity
         Calculate MD5 and SHA256 hashes of /evidence/memory.raw
         Document memory image size and acquisition details
-        Record current date, time, and your student ID as analyst ID
+        Record current date, time, and your analyst ID as analyst ID
 
     Identify Memory Profile
         Use Volatility 2 imageinfo to determine the correct Windows profile
@@ -316,7 +316,7 @@ StudentID_Memory_Email_Forensics/
 Formatting Guidelines
 
     Report Format: Professional document with:
-        Title page (assignment title, your name, student ID, date)
+        Title page (assignment title, your name, analyst ID, date)
         Table of contents
         Page numbers
         Proper headings and subheadings
@@ -327,7 +327,7 @@ Formatting Guidelines
 
 Assessment Rubric
 
-Total Points: 25 (25% of final course grade)
+Total Points: 25 (adjust weighting to your course)
 Task Breakdown
 Component 	Points 	Description
 Task 1: Memory Forensics 	10.0 	Volatility 2 analysis of Windows XP memory
@@ -375,8 +375,8 @@ Reference Materials (in this package)
 Getting Help
 
     Week 9-10 Lab Sessions: Hands-on guidance with memory and email analysis
-    Office Hours: [Insert your office hours]
-    Discussion Forum: Course LMS for technical questions
+    Support availability: [Insert your support availability]
+    Discussion Forum: course forum for technical questions
     Docker Issues: See README.md troubleshooting section
 
 External Resources

@@ -1,15 +1,15 @@
 Assessment 1 – USB Evidence Triage Report
 Assessment Overview
 
-    Weight: 20% of total course grade
-    Due Date: Friday 10th October 2025
+    Weight: [adjust to your course] (suggested: 20%)
+    Due Date: [set per your schedule]
     Submission Type: Individual
     Estimated Time: 8-10 hours (broken into phases: 3-hour guided lab walk-through + 5-7 hours independent analysis and reporting)
 
 Assessment Overview
 
-    Weight: 20% of total course grade (20 points)
-    Due Date: End of Week 7 (Extension available until Week 8 with prior approval)
+    Weight: [adjust to your course] (suggested: 20%, 20 points)
+    Due Date: [set per your schedule]
     Submission Type: Individual
     Estimated Time: 8-10 hours total
         Week 7 lab session: 3 hours (guided practice)
@@ -23,7 +23,7 @@ Investigation Background
 📖 For complete case details, read SCENARIO.md in this package.
 Quick Summary
 
-Date: January 16, 2024 Case Number: CLOUDCORE-2024-INS-001
+Date: December 7, 2009 Case Number: CLOUDCORE-2009-INS-001
 
 Cloudcore Corporation’s Data Loss Prevention (DLP) system detected anomalous data transfer patterns over the past month. Security footage revealed an employee accessing multiple workstations outside of normal business hours. During a consensual search of the employee’s workspace, a concealed USB device was discovered.
 
@@ -72,18 +72,18 @@ Objective: Establish proper evidence handling procedures and verify integrity.
         Calculate MD5 hash of /evidence/cloudcore_suspect_usb.E01
         Calculate SHA256 hash of /evidence/cloudcore_suspect_usb.E01
         Verify E01 internal integrity using ewfverify
-        Document current date, time, and your student ID as analyst ID
+        Document current date, time, and your analyst ID as analyst ID
     Create Chain of Custody Documentation
         Create a properly formatted chain_of_custody.csv file with these fields:
-            Evidence_ID (create unique identifier, e.g., EVIDENCE-2024-001)
-            Date_Received (use January 16, 2024)
+            Evidence_ID (create unique identifier, e.g., EVIDENCE-2009-001)
+            Date_Received (use December 7, 2009)
             Time_Received (use 08:30 AM)
             Received_From (use “Cloudcore Security Team”)
             MD5_Hash (your calculated value)
             SHA256_Hash (your calculated value)
             Analyst_Name (your name)
-            Student_ID (your student ID)
-            Case_Number (CLOUDCORE-2024-INS-001)
+            Analyst_ID (your analyst ID)
+            Case_Number (CLOUDCORE-2009-INS-001)
             Evidence_Description (brief description of USB device)
             Storage_Location (use “/evidence - read-only archive”)
             Verification_Status (result of ewfverify)
@@ -269,7 +269,7 @@ StudentID_USB_Triage/
 Formatting Guidelines
 
     Report Format: Professional document with:
-        Title page (assignment title, your name, student ID, date)
+        Title page (assignment title, your name, analyst ID, date)
         Table of contents
         Page numbers
         Proper headings and subheadings
@@ -279,7 +279,7 @@ Formatting Guidelines
 
 Assessment Rubric
 
-Total Points: 20 (20% of final course grade)
+Total Points: 20 (adjust weighting to your course)
 Task Breakdown
 Component 	Points 	Description
 Task 1: Chain of Custody 	2.5 	Evidence handling and integrity verification
@@ -330,8 +330,8 @@ Reference Materials (in this package)
 Getting Help
 
     Week 7 Lab Session: Hands-on guidance and troubleshooting
-    Office Hours: [Insert your office hours]
-    Discussion Forum: Course LMS for technical questions
+    Support availability: [Insert your support availability]
+    Discussion Forum: course forum for technical questions
     Docker Issues: See README.md troubleshooting section
 
 External Resources

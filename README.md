@@ -458,8 +458,8 @@ docker compose build --no-cache
 ### Getting More Help
 
 - **Lab Session:** Ask instructor or TAs
-- **Office Hours:** See course syllabus for times
-- **LMS Forum:** Post technical questions
+- **Support availability:** See course syllabus for times
+- **course forum:** Post technical questions
 - **Documentation:** Review `docs/COMMANDS.md`, `docs/SCENARIO.md`, lab WALKTHROUGH.md
 
 See **`docs/TROUBLESHOOTING.md`** for more detailed troubleshooting.
@@ -550,7 +550,7 @@ git checkout instructor
 
 **Forensic Concepts:**
 - Review `docs/SCENARIO.md` and `docs/COMMANDS.md`
-- Attend lab session and office hours
+- Attend lab session and support availability
 - Check tool documentation (Sleuth Kit, Volatility, etc.)
 - Ask on LMS forum
 
@@ -588,5 +588,4 @@ git checkout instructor
 
 ---
 
-*Last updated: October 2024 | Version 3.0*
 *Forensic Workstation: Ready to investigate*

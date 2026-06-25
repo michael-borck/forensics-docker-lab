@@ -346,7 +346,7 @@ Never analyze corrupted evidence."
 
 ```bash
 # Create chain of custody file
-echo "Case: CLOUDCORE-2024-INS-001" > /cases/chain_of_custody.txt
+echo "Case: CLOUDCORE-2009-INS-001" > /cases/chain_of_custody.txt
 echo "Evidence: cloudcore_suspect_usb.E01" >> /cases/chain_of_custody.txt
 echo "Examiner: [Your Name]" >> /cases/chain_of_custody.txt
 echo "Date: $(date)" >> /cases/chain_of_custody.txt
@@ -780,7 +780,7 @@ strings /cases/recovered/Documents/passwords.txt | head -20
 
 **Expected output (simulated):**
 ```
-Admin Password: CloudCore2024!
+Admin Password: CloudCore2009!
 DB_USER: marcus.chen
 DB_PASS: SecureP@ss789
 FTP_CREDENTIALS: ftp.backup.cloudcore.com
@@ -928,12 +928,12 @@ client_database_backup.zip
 Confidential Client Information
 password: admin123
 Cloudcore Internal Use Only
-CLIENT_EXPORT_2024_01_14.csv
+CLIENT_EXPORT_2009_12_05.csv
 ...
 ```
 
 ```
-🎤 SAY: "Notice the date? January 14, 2024 - the day Cloudcore reported data
+🎤 SAY: "Notice the date? December 5, 2009 - the day Cloudcore reported data
 went missing. This timeline alignment strengthens the case."
 ```
 
@@ -1165,7 +1165,7 @@ A: "You can use AI to help organize thoughts, check grammar, suggest structure.
 2. Review your notes - fill in any gaps now while it's fresh
 3. Read SCENARIO.md fully - there are details we didn't cover in lab
 4. Start your analysis soon - don't wait until the night before
-5. Use the LMS forum if you get stuck
+5. Use the course forum forum if you get stuck
 
 The assignment is due [INSERT DUE DATE]. Aim to finish your analysis this week,
 then spend next week on the report.
@@ -1196,7 +1196,7 @@ See you next week!"
 
 - [ ] Post lab recording to LMS (if recorded)
 - [ ] Send reminder email with key commands
-- [ ] Update office hours availability
+- [ ] Post support availability
 - [ ] Monitor LMS forum for questions
 - [ ] Grade chain of custody submissions (if collected during lab)
 
@@ -1321,7 +1321,7 @@ Use this table during lab to track actual timing:
 **Student Resources:**
 - [ ] Lab materials link shared (before class)
 - [ ] LMS assignment posted
-- [ ] Office hours posted
+- [ ] Support availability posted
 - [ ] Forum monitoring set up
 
 ---
