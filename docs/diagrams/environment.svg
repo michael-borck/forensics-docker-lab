@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" font-family="system-ui" role="img" aria-label="The forensic lab environment">
+<defs>
+<marker id="a" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="var(--accent)"/></marker>
+<style>
+:root{--surface:#fff;--ink:#14202e;--muted:#5b6775;--line:#c7d0dd;--accent:#256b64;--accent-soft:#d7ebe8;}
+@media(prefers-color-scheme:dark){:root{--surface:#161f2c;--ink:#e6ecf3;--muted:#93a1b1;--line:#324357;--accent:#52b3a8;--accent-soft:#123531;}}
+.dev{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+.hub{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.ev{fill:var(--surface);stroke:var(--line);stroke-width:1.5;stroke-dasharray:5 4}
+.link{stroke:var(--accent);stroke-width:2;fill:none}
+.host{font:700 15px ui-monospace,Menlo,monospace;fill:var(--ink)}
+.hubt{font:800 15px system-ui;fill:var(--accent);letter-spacing:.03em}
+.sub{font:11.5px system-ui;fill:var(--muted)}
+.tool{font:11.5px ui-monospace,Menlo,monospace;fill:var(--muted)}
+.port{font:11px system-ui;fill:var(--accent)}
+.dot{fill:var(--muted)} .hubdot{fill:var(--accent)}
+.title{font:700 13px system-ui;fill:var(--muted);letter-spacing:.05em}
+</style></defs>
+
+<text class="title" x="40" y="30">YOUR FORENSIC ENVIRONMENT · one command brings it all up</text>
+
+<rect class="ev" x="30" y="118" width="150" height="86" rx="12"/>
+<text class="host" x="50" y="150" font-size="14">evidence</text>
+<text class="sub" x="48" y="172">disk image (.E01)</text>
+<text class="sub" x="48" y="189">memory dump (.raw)</text>
+<path class="link" d="M180 161 H298" marker-end="url(#a)"/>
+<text class="sub" x="196" y="152">mounts in</text>
+
+<rect class="hub" x="300" y="96" width="260" height="132" rx="16"/>
+<circle class="hubdot" cx="322" cy="126" r="5"/>
+<text class="hubt" x="336" y="131">dfir — forensic workstation</text>
+<text class="sub" x="318" y="156">you work here, in the terminal</text>
+<text class="tool" x="318" y="180">Sleuth Kit · Volatility · YARA</text>
+<text class="tool" x="318" y="198">Plaso · foremost · exiftool · tshark</text>
+
+<path class="link" d="M560 136 H648"/>
+<rect class="dev" x="648" y="64" width="200" height="58" rx="10"/>
+<circle class="dot" cx="666" cy="93" r="4"/>
+<text class="host" x="680" y="88">plaso</text>
+<text class="sub" x="662" y="109">builds the super-timeline</text>
+
+<path class="link" d="M560 162 H648"/>
+<rect class="dev" x="648" y="134" width="200" height="58" rx="10"/>
+<circle class="dot" cx="666" cy="163" r="4"/>
+<text class="host" x="680" y="158">autopsy</text>
+<text class="sub" x="662" y="179">graphical analysis engine</text>
+
+<path class="link" d="M560 188 H648"/>
+<rect class="dev" x="648" y="204" width="200" height="58" rx="10"/>
+<circle class="dot" cx="666" cy="233" r="4"/>
+<text class="host" x="680" y="228">noVNC</text>
+<text class="port" x="662" y="249">Autopsy GUI → browser · :8080</text>
+</svg>
