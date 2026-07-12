@@ -1,10 +1,11 @@
-Of course. Here is a markdown document comparing VirtualBox, VMware, and Docker for your student cohort.
+# Comparison of Virtualization & Containerization Tools
 
-***
+> A hardware- and architecture-focused comparison of VirtualBox, VMware and Docker for a mixed-laptop
+> cohort. For the broader picture — where Docker *doesn't* fit (physical acquisition, kernel work,
+> malware, Windows/AD) and when to use a VM, bare metal, or a VPS instead — see the series'
+> [**Why Docker**](https://github.com/michael-borck/security-labs/blob/main/WHY-DOCKER.md) guide.
 
-# Comparison of Virtualization & Containerization Tools for a Diverse Student Cohort
-
-This document compares three popular tools—VirtualBox, VMware, and Docker—to help decide on the best platform for a student cohort with a wide variety of laptops (macOS, Windows, ChromeOS) and different CPU architectures (Intel/AMD x86 vs. Apple Silicon/ARM).
+This document compares three popular tools—VirtualBox, VMware, and Docker—to help decide on the best platform for a group with a wide variety of laptops (macOS, Windows, ChromeOS) and different CPU architectures (Intel/AMD x86 vs. Apple Silicon/ARM).
 
 ---
 
