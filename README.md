@@ -4,9 +4,7 @@
 [![cybersecurity](https://img.shields.io/badge/-cybersecurity-f44336?style=flat-square)](https://github.com/topics/cybersecurity) [![digital-forensics](https://img.shields.io/badge/-digital--forensics-blue?style=flat-square)](https://github.com/topics/digital-forensics) [![docker](https://img.shields.io/badge/-docker-2496ed?style=flat-square)](https://github.com/topics/docker) [![edtech](https://img.shields.io/badge/-edtech-4caf50?style=flat-square)](https://github.com/topics/edtech) [![incident-response](https://img.shields.io/badge/-incident--response-blue?style=flat-square)](https://github.com/topics/incident-response) [![memory-forensics](https://img.shields.io/badge/-memory--forensics-blue?style=flat-square)](https://github.com/topics/memory-forensics) [![network-analysis](https://img.shields.io/badge/-network--analysis-blue?style=flat-square)](https://github.com/topics/network-analysis) [![sleuth-kit](https://img.shields.io/badge/-sleuth--kit-blue?style=flat-square)](https://github.com/topics/sleuth-kit) [![volatility](https://img.shields.io/badge/-volatility-blue?style=flat-square)](https://github.com/topics/volatility) [![yara](https://img.shields.io/badge/-yara-blue?style=flat-square)](https://github.com/topics/yara)
 <!-- BADGES:END -->
 
-> **Part of the [Assume-Breach series](https://michael-borck.github.io/security-labs/)** — four
-> Docker-based security labs, plus a book and a game. Browse the whole set at the
-> [series hub](https://github.com/michael-borck/security-labs).
+> **Part of the [Assume-Breach series](https://michael-borck.github.io/security-labs/)** — five hands-on security labs, two companion books, and a game. Browse them all at the [series hub](https://github.com/michael-borck/security-labs).
 
 **▶ Start here: https://michael-borck.github.io/forensics-docker-lab/** — or run `./start.sh` (or `make start`).
 ## Complete 5-Lab Course on the Cloudcore 2009 Incident
