@@ -35,6 +35,7 @@ services:
   # Plaso (log2timeline) for super timelines
   plaso:
     image: log2timeline/plaso:latest
+    platform: linux/amd64  # published amd64-only; runs emulated on Apple Silicon (fine — batch CLI)
     user: "${PUID:-1000}:${PGID:-1000}"
     read_only: true
     working_dir: /cases
@@ -60,7 +61,8 @@ services:
     # Note: No change needed for _JAVA_OPTIONS, but be aware if performance issues arise
 
   novnc:
-    image: theasp/novnc:latest # This image also supports multiple architectures
+    image: theasp/novnc:latest
+    platform: linux/amd64  # published amd64-only; runs emulated on Apple Silicon (fine — lightweight proxy)
     ports:
       - "8080:8080"
     environment:
