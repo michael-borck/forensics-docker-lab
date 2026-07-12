@@ -1,6 +1,7 @@
 # Troubleshooting
 
 ## Docker Issues
+- **Evidence won't mount (`ewfmount`/`xmount` fails)**: the `dfir` container needs `/dev/fuse` + the `SYS_ADMIN` capability to mount E01 images. These are granted in `docker-compose.yml` and work out of the box on Docker Desktop; on rootless or hardened Linux hosts you may need to allow them (or just use the CLI tools — `fls`/`tsk_recover` — which need no mount).
 - **Build fails (bulk-extractor)**: Update Dockerfile to use Debian stable; run `docker compose build dfir --no-cache`.
 - **Permission errors**: Set .env PUID/PGID to your user (id -u). Restart: `docker compose down -v; docker compose up -d`.
 - **Autopsy not launching**: `docker compose exec autopsy autopsy &`; access http://localhost:8080/vnc.html.
