@@ -42,13 +42,12 @@ git checkout instructor
 - **[UNDERSTANDING-THE-INVESTIGATION-ENVIRONMENT.md](UNDERSTANDING-THE-INVESTIGATION-ENVIRONMENT.md)** - Lab environment explained
 
 **Assignments & Grading:**
-- **[ASSIGNMENT1.md](ASSIGNMENT1.md)** - Lab 1 assignment details
-- **[ASSIGNMENT2.md](ASSIGNMENT2.md)** - Labs 2-4 assignment details
-- **[RUBRICS.md](RUBRICS.md)** - Comprehensive grading rubrics (main branch)
+- **Assignment briefs** - Lab assignment details (available to instructors on request)
+- **Grading rubrics** - Comprehensive grading rubrics (available to instructors on request)
 
 **Facilitation & Workflow:**
 - **[FACILITATION.md](FACILITATION.md)** - How to teach/facilitate labs
-- **[WORKBOOK.md](WORKBOOK.md)** - Student report template
+- **[lab_report_template.md](../templates/lab_report_template.md)** - Student report template
 
 ---
 
@@ -101,11 +100,12 @@ docs/
 ├── GLOSSARY.md                                 ← Terminology
 ├── COURSE_MAPPING.md                           ← Curriculum integration
 ├── FACILITATION.md                             ← Teaching guidance
-├── ASSIGNMENT1.md / ASSIGNMENT2.md             ← Assignment details
 ├── ARCHITECTURE_DECISION.md                    ← Docker vs VM decision
 ├── UNDERSTANDING-THE-INVESTIGATION-ENVIRONMENT.md
-├── WORKBOOK.md                                 ← Student template
 └── [Legacy reference docs]
+
+Student report template: ../templates/lab_report_template.md
+Assignment briefs and grading rubrics are available to instructors on request.
 ```
 
 ---

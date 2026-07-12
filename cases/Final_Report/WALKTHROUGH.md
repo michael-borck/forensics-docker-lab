@@ -488,3 +488,8 @@ If your report answers all 6 questions with supporting evidence, you've written 
 You've now experienced a complete forensic investigation from evidence collection through professional reporting. This is what real-world digital forensics looks like.
 
 Remember: **Documentation is Evidence. Evidence is Truth.**
+
+---
+
+## Going further — Incident Zero
+Enjoyed rebuilding the Cloudcore case? *Incident Zero*'s Forensics module has you chase attribution and reconstruct an attack timeline under pressure — the same detective work, played as a cooperative game. ([Incident Zero](https://incidentzero.retroverse.studio/) — free, print-and-play.)

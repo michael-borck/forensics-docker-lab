@@ -62,11 +62,11 @@ During the investigation, multiple pieces of digital evidence were collected and
 **Digital Evidence Collected:**
 
 1. **USB Storage Device** (Suspected primary exfiltration vector)
-   - **Device:** SanDisk Cruzer Blade USB 2.0 Flash Drive
-   - **Capacity:** 16GB
-   - **Serial Number:** [Redacted for lab use]
-   - **File System:** NTFS (Windows formatted)
-   - **Forensic Image:** `usb.E01` (Expert Witness Format)
+   - **Device:** Generic USB flash volume (practice evidence)
+   - **Capacity:** ~64 MB volume image
+   - **Volume Label:** `PRACTICE`
+   - **File System:** FAT32
+   - **Forensic Image:** `usb.img` (raw) and `usb.E01` (Expert Witness Format wrapper)
    - **Status:** Ready for carving and file system analysis
 
 2. **Network Traffic Capture** (Potential data transfer evidence)
@@ -78,8 +78,8 @@ During the investigation, multiple pieces of digital evidence were collected and
 
 3. **Email Archives** (Communication evidence)
    - **Source:** Corporate email server (Suspect's mailbox)
-   - **Format:** MBOX and PST files
-   - **Time Period:** Previous 6 months of correspondence
+   - **Format:** MBOX file (`mail.mbox`)
+   - **Time Period:** Correspondence around the incident window
    - **Analysis Focus:** Intent indicators, coordination, or confession evidence
 
 4. **System Memory Snapshot** (Volatile memory forensics)
@@ -243,29 +243,35 @@ All forensic evidence files are located in the `/evidence/` directory (read-only
 
 **Case 1: USB Device Analysis**
 
-- **Filename:** `usb.E01`
-- **Format:** Expert Witness Format (EnCase Evidence File)
-- **Content:** NTFS filesystem image with allocated and deleted files
+- **Filenames:** `usb.img` (raw image) and `usb.E01` (EnCase wrapper of the same data)
+- **Format:** Raw disk image and Expert Witness Format (EnCase Evidence File)
+- **Content:** ~64 MB FAT32 volume labelled `PRACTICE`. The suspect's sensitive files were copied on, then **deleted** — the directory entries are freed but the data clusters remain in unallocated space, so they are recoverable and carvable. Planted (then deleted) files include:
+  - `Documents/project_secrets.txt` — proprietary Cloudcore source code with hard-coded database credentials
+  - `Documents/project_secrets.zip` — a real ZIP archive (carvable by its PK header) holding the same proprietary material
+  - `flag.txt` — the recovery-exercise flag
+  - `tmp/email_draft.txt` — a draft email to `exfil@personal.com` describing the exfiltration
+  - `tmp/truecrypt_config.txt` — notes on a hidden encrypted volume for data transfer
+  - `var/log/syslog` — a syslog fragment showing the USB mount and file copy
 - **Analysis Method:** File carving, deleted file recovery, timeline reconstruction
 
 **Case 2: Network Traffic Analysis**
 
-- **Filename:** `network.cap` (or similar)
-- **Format:** PCAP network packet capture file
+- **Filename:** `network.cap`
+- **Format:** Packet capture file
 - **Content:** Raw network packets from suspect communication period
-- **Analysis Method:** PCAP parsing, protocol analysis, flow reconstruction
+- **Analysis Method:** Capture parsing, protocol analysis, flow reconstruction
 
 **Case 3: Email Archive Analysis**
 
-- **Filenames:** `suspect_mailbox.mbox` or `suspect_mailbox.pst`
-- **Format:** MBOX (standard email format) or PST (Outlook format)
+- **Filename:** `mail.mbox`
+- **Format:** MBOX (standard mailbox format)
 - **Content:** Email messages, metadata, and attachments
 - **Analysis Method:** Email parsing, metadata extraction, attachment analysis
 
 **Case 4: Memory Forensics**
 
-- **Filename:** `memory.dmp` or `RAM.dd`
-- **Format:** Raw memory dump or volatility-compatible format
+- **Filename:** `memory.raw` (downloaded — see `docs/evidence-sources.md`)
+- **Format:** Raw memory dump (Volatility-compatible)
 - **Content:** System RAM at time of acquisition
 - **Analysis Method:** Process analysis, DLL injection detection, artifact extraction
 
@@ -282,9 +288,9 @@ md5sum /evidence/usb.E01
 sha256sum /evidence/usb.E01
 
 # Verify other evidence files
-md5sum /evidence/network.pcap
-md5sum /evidence/suspect_mailbox.mbox
-md5sum /evidence/memory.dmp
+md5sum /evidence/network.cap
+md5sum /evidence/mail.mbox
+md5sum /evidence/memory.raw
 ```
 
 ---

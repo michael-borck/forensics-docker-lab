@@ -11,15 +11,17 @@ The following outlines the suspected exfiltration storyline, derived from artifa
 - **Initial Actions:** Alex copies sensitive files (e.g., `project_secrets.zip`) to a workstation for staging.
 
 ### Phase 1: Local Preparation and Deletion (2009-12-01 to 12-05)
-- **Disk Activity:** Files are created and mounted on USB drive (FAT32, labeled "PRACTICE"). Sensitive files including source code with embedded credentials are deleted to hide tracks.
-- **Link to Labs:** Lab 1 (USB Imaging & Triage) – Establish chain-of-custody for `usb.E01`, recover deleted artifacts using Sleuth Kit (fls, icat, tsk_recover), analyse filesystem structure and recover file content.
-- **Key Findings:**
-  - **project_secrets.txt (inode 375):** Cloudcore proprietary source code with hardcoded database credentials (db_host=192.168.1.100, db_user=alex_doe, db_pass=TempPass_2009!) and client data (MegaCorp Inc. project details)
-  - **email_draft.txt (inode 663):** Email from Alex Doe to Sarah Connor expressing security concerns about database credentials and unusual network activity from development server
-  - **flag_backup.txt (inode 669):** Recovery confirmation flag
-  - **project_secrets_backup.txt (inode 1715):** Duplicate copy of project_secrets.txt, indicating deliberate backup before deletion
-  - **Timeline:** Multiple deleted files with "secrets" and "flag" in names suggest intentional data staging and destruction
-  - **Significance:** Database credentials in source code would allow unauthorized access to backend systems; email draft suggests Alex was aware of security issues and network compromise
+- **Disk Activity:** Sensitive files are copied onto a ~64 MB FAT32 USB volume labelled "PRACTICE", then deleted to hide tracks. Deletion only frees the FAT directory entries — the underlying data clusters survive in unallocated space, so the content is recoverable and carvable.
+- **Link to Labs:** Lab 1 (USB Imaging & Triage) – Establish chain-of-custody for `usb.img` / `usb.E01`, recover deleted artifacts using Sleuth Kit (fls, icat, tsk_recover) and carve them with foremost, analyse filesystem structure and recover file content.
+- **Key Findings (deleted, recoverable files):**
+  - **Documents/project_secrets.txt:** Cloudcore proprietary source code with hardcoded database credentials (db_host=192.168.1.100, db_user=alex_doe, db_pass=TempPass_2009!) and client data (MegaCorp Inc. project details)
+  - **Documents/project_secrets.zip:** A real ZIP archive (carvable via its PK header) containing the same proprietary source material staged for transfer
+  - **flag.txt:** Recovery-exercise flag confirming successful carving
+  - **tmp/email_draft.txt:** Draft email to exfil@personal.com describing the exfiltration of project_secrets.zip
+  - **tmp/truecrypt_config.txt:** Notes on a hidden AES-256 encrypted volume intended for the data transfer
+  - **var/log/syslog (fragment):** System log showing the USB device connect, a `mount` of the drive, and a copy of project_secrets.zip to the USB
+  - **Timeline:** Multiple deleted files with "secrets" and "flag" in their names, plus the syslog copy entry, suggest intentional data staging and destruction
+  - **Significance:** Database credentials in source code would allow unauthorized access to backend systems; the email draft and TrueCrypt notes suggest Alex planned and prepared for exfiltration
 
 ### Phase 2: Malware Installation and Memory Analysis (2009-12-05, 02:11 AM)
 - **Activity:** Previously, a keylogger (ToolKeylogger.exe) was installed to capture credentials and sensitive data. The malware runs silently under explorer.exe with internet connectivity to exfiltrate captured keystrokes to an attacker server.
@@ -48,7 +50,7 @@ The following outlines the suspected exfiltration storyline, derived from artifa
 - **Key Findings:** Evidence shows keylogger malware enabled credential theft, which facilitated staging of sensitive data on USB, exfiltration via personal email, and network C2 communication - all pointing to intentional data theft by insider with external assistance.
 
 ## Visual Timeline Reference
-See `forensic_case_timeline.png` (or `.svg`) for a graphical overview of correlated events across sources. Key markers:
+Build your own correlated timeline in Lab 5 (Final_Report) using Plaso — no pre-drawn case-timeline figure ships with the lab. For a diagram of how the forensic environment itself is laid out, see `docs/diagrams/environment.svg`. When you construct your timeline, mark it up along these lines:
 
 - Red: Suspicious actions (deletions, mounts, outbound traffic).
 - Blue: Corroborating evidence (timestamps, hashes).

@@ -465,7 +465,7 @@ Mounted inside container as `/evidence`
 │   ├── WALKTHROUGH.md     ← Step-by-step guide
 │   ├── output/            ← Your analysis outputs
 │   ├── recovered/         ← Recovered files
-│   └── report.md          ← Your report (copy from templates/WORKBOOK.md)
+│   └── report.md          ← Your report (copy from templates/lab_report_template.md)
 ├── Memory_Forensics/
 │   ├── README.md
 │   ├── WALKTHROUGH.md
