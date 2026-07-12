@@ -7,6 +7,11 @@
 > **Part of the [Assume-Breach series](https://michael-borck.github.io/security-labs/)** — five hands-on security labs, two companion books, and a game. Browse them all at the [series hub](https://github.com/michael-borck/security-labs).
 
 **▶ Start here: https://michael-borck.github.io/forensics-docker-lab/** — or run `./start.sh` (or `make start`).
+
+> **Using an AI assistant?** Make it a thinking partner, not an autopilot — and never run a command you
+> can't explain. The series guide **[Learning with AI](https://github.com/michael-borck/security-labs/blob/main/LEARNING-WITH-AI.md)**
+> shows how, including how to repeat each lab until you don't need the assistant at all.
+
 ## Complete 5-Lab Course on the Cloudcore 2009 Incident
 
 ---
