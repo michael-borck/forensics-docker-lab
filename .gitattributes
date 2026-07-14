@@ -11,3 +11,7 @@ docker-compose.yml text eol=lf
 
 # Let Git handle other files automatically
 * text=auto
+
+# Batch files must keep CRLF (cmd.exe mishandles LF-only goto labels)
+*.bat text eol=crlf
+start.command text eol=lf
