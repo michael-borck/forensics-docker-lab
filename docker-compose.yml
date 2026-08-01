@@ -34,7 +34,9 @@ services:
 
   # Plaso (log2timeline) for super timelines
   plaso:
-    image: log2timeline/plaso:latest
+    # Pinned: plaso publishes dated tags, and a timeline tool changing under a
+    # case guide is worse than a stale one.
+    image: log2timeline/plaso:20260720
     platform: linux/amd64  # published amd64-only; runs emulated on Apple Silicon (fine — batch CLI)
     user: "${PUID:-1000}:${PGID:-1000}"
     read_only: true
@@ -49,7 +51,9 @@ services:
   # Optional GUI: Autopsy over noVNC in your browser at http://localhost:8080/vnc.html
   # Note: community images vary; if it doesn't start on your OS, keep using CLI tools above.
   autopsy:
-    image: eecs388/autopsy:latest  # Third-party public image (UMich EECS388); used as the maintained multi-arch Autopsy build
+    # Pinned by digest: this image only ever publishes :latest (last rebuilt
+    # 2024-01), so a digest is the only way to pin it.
+    image: eecs388/autopsy@sha256:6afc77df01bb2c05e5e193d3a9f74be67d0d2bd5c88a3ae8ecc81dfb6e45abfa  # Third-party public image (UMich EECS388); used as the maintained multi-arch Autopsy build
     depends_on:
       - novnc
     environment:
@@ -61,10 +65,11 @@ services:
     # Note: No change needed for _JAVA_OPTIONS, but be aware if performance issues arise
 
   novnc:
-    image: theasp/novnc:latest
+    # Pinned by digest: :latest is the only tag published.
+    image: theasp/novnc@sha256:6e4f7346150b07983c4bc0d445a6fb227302aed8d00fbfd9cfdf81b07f68851d
     platform: linux/amd64  # published amd64-only; runs emulated on Apple Silicon (fine — lightweight proxy)
     ports:
-      - "8080:8080"
+      - "${LAB_BIND:-127.0.0.1}:8080:8080"
     environment:
       - DISPLAY_WIDTH=${DISPLAY_WIDTH}
       - DISPLAY_HEIGHT=${DISPLAY_HEIGHT}
