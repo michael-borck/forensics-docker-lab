@@ -2,7 +2,24 @@
 set -euo pipefail
 
 # Container-based version - works on Mac, Windows, and Linux
-# Creates the same enhanced practice image but uses Docker for filesystem operations
+# Creates the same enhanced practice image but uses the container engine for
+# filesystem operations. Docker is the default; CONTAINER_ENGINE=podman works
+# too (use rootful Podman: this script needs mount/loop inside the container).
+
+ENGINE="${CONTAINER_ENGINE:-}"
+if [ -z "$ENGINE" ]; then
+  if command -v docker >/dev/null 2>&1; then ENGINE=docker
+  elif command -v podman >/dev/null 2>&1; then ENGINE=podman
+  fi
+fi
+[ -n "$ENGINE" ] || { echo "No container engine found (Docker or Podman)." >&2; exit 1; }
+if [ "$ENGINE" = podman ]; then
+  if podman compose version >/dev/null 2>&1; then COMPOSE=(podman compose)
+  else COMPOSE=(podman-compose); fi
+else
+  if docker compose version >/dev/null 2>&1; then COMPOSE=(docker compose)
+  else COMPOSE=(docker-compose); fi
+fi
 
 mkdir -p evidence cases
 IMG="evidence/usb.img"
@@ -11,7 +28,7 @@ echo "[*] Creating 100MB EXT4 image at $IMG using Docker"
 dd if=/dev/zero of="$IMG" bs=1M count=100 status=progress
 
 echo "[*] Creating and mounting filesystem in Docker container"
-docker compose run --rm dfir bash -c "
+"${COMPOSE[@]}" run --rm dfir bash -c "
 # Create the filesystem
 mkfs.ext4 -F /evidence/usb.img
 

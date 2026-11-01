@@ -20,6 +20,45 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 cd "$REPO_ROOT"
 
+# --- container engine ------------------------------------------------------
+# Docker by default; Podman fully supported (CONTAINER_ENGINE=podman).
+ENGINE="${CONTAINER_ENGINE:-}"
+if [ -z "$ENGINE" ]; then
+  if command -v docker >/dev/null 2>&1; then ENGINE=docker
+  elif command -v podman >/dev/null 2>&1; then ENGINE=podman
+  fi
+fi
+[ -n "$ENGINE" ] || { echo "No container engine found (Docker or Podman)." >&2; exit 1; }
+
+ensure_podman_socket() {
+  local sock="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/podman/podman.sock"
+  mkdir -p "$(dirname "$sock")"
+  if [ ! -S "$sock" ]; then
+    systemctl --user enable --now podman.socket >/dev/null 2>&1 || true
+    for _ in 1 2 3 4 5; do [ -S "$sock" ] && break; sleep 1; done
+  fi
+  [ -S "$sock" ] || return 1
+  export DOCKER_HOST="unix://$sock"
+}
+
+COMPOSE=()
+case "$ENGINE" in
+  docker)
+    if docker compose version >/dev/null 2>&1; then COMPOSE=(docker compose)
+    elif command -v docker-compose >/dev/null 2>&1; then COMPOSE=(docker-compose)
+    fi ;;
+  podman)
+    if podman compose version >/dev/null 2>&1; then COMPOSE=(podman compose)
+    elif command -v podman-compose >/dev/null 2>&1; then COMPOSE=(podman-compose)
+    elif command -v docker-compose >/dev/null 2>&1 && ensure_podman_socket; then
+      COMPOSE=(docker-compose)
+    fi ;;
+esac
+if [ "${#COMPOSE[@]}" -eq 0 ]; then
+  echo "No Compose front-end found for $ENGINE (install Docker Compose v2 or podman-compose)." >&2
+  exit 1
+fi
+
 IMG="evidence/usb.img"
 E01="evidence/usb.E01"
 
@@ -37,11 +76,11 @@ fi
 # (fast pull); fall back to a local build only if the pull fails (offline /
 # private package).
 DFIR_IMAGE="${DFIR_IMAGE:-ghcr.io/michael-borck/dfir-cli:latest}"
-if ! docker image inspect "$DFIR_IMAGE" >/dev/null 2>&1; then
+if ! "$ENGINE" image inspect "$DFIR_IMAGE" >/dev/null 2>&1; then
   echo "[*] Obtaining forensic image ($DFIR_IMAGE)..."
-  if ! docker pull "$DFIR_IMAGE"; then
+  if ! "$ENGINE" pull "$DFIR_IMAGE"; then
     echo "[*] Pull failed — building locally (~2-5 min)..."
-    docker compose build dfir
+    "${COMPOSE[@]}" build dfir
   fi
 fi
 
@@ -52,7 +91,7 @@ echo
 
 # Mount evidence/ read-write (docker-compose mounts it read-only for analysis).
 # The generation script is piped to bash via stdin.
-docker run --rm -i \
+"$ENGINE" run --rm -i \
   -v "$REPO_ROOT/evidence:/evidence" \
   -e USB_IMAGE_MB="${USB_IMAGE_MB:-64}" \
   "$DFIR_IMAGE" bash -s <<'CONTAINER_SCRIPT'

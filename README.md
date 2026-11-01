@@ -181,6 +181,29 @@ docker --version
 docker compose version
 ```
 
+**Podman:** the launcher, Makefile and helper scripts also work with Podman:
+
+```bash
+CONTAINER_ENGINE=podman ./start.sh
+CONTAINER_ENGINE=podman make verify
+```
+
+Use **rootful** Podman for the full DFIR toolbox — the `dfir` container needs
+`/dev/fuse`, `SYS_ADMIN` and `DAC_OVERRIDE` for `ewfmount`/`xmount`. On
+macOS/Windows:
+
+```bash
+podman machine set --rootful
+podman machine stop && podman machine start
+
+# Apple Silicon: the plaso and noVNC images are amd64-only
+podman machine ssh
+sudo rpm-ostree install qemu-user-static   # then reboot the machine
+```
+
+On SELinux hosts, add `:z` to the bind mounts (or run the lab with
+`--security-opt label=disable`).
+
 **System Requirements:**
 - 4GB RAM minimum (8GB+ recommended for Autopsy GUI)
 - 15GB free disk space (for all evidence files)

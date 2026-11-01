@@ -7,6 +7,40 @@ echo "  Forensics Lab - Environment Verification"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 
+# --- container engine ------------------------------------------------------
+# Docker by default; Podman fully supported (CONTAINER_ENGINE=podman).
+ENGINE="${CONTAINER_ENGINE:-}"
+if [ -z "$ENGINE" ]; then
+    if command -v docker >/dev/null 2>&1; then ENGINE=docker
+    elif command -v podman >/dev/null 2>&1; then ENGINE=podman
+    fi
+fi
+
+ensure_podman_socket() {
+    local sock="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/podman/podman.sock"
+    mkdir -p "$(dirname "$sock")"
+    if [ ! -S "$sock" ]; then
+        systemctl --user enable --now podman.socket >/dev/null 2>&1 || true
+        for _ in 1 2 3 4 5; do [ -S "$sock" ] && break; sleep 1; done
+    fi
+    [ -S "$sock" ] || return 1
+    export DOCKER_HOST="unix://$sock"
+}
+
+COMPOSE=()
+case "$ENGINE" in
+    docker)
+        if docker compose version >/dev/null 2>&1; then COMPOSE=(docker compose)
+        elif command -v docker-compose >/dev/null 2>&1; then COMPOSE=(docker-compose)
+        fi ;;
+    podman)
+        if podman compose version >/dev/null 2>&1; then COMPOSE=(podman compose)
+        elif command -v podman-compose >/dev/null 2>&1; then COMPOSE=(podman-compose)
+        elif command -v docker-compose >/dev/null 2>&1 && ensure_podman_socket; then
+            COMPOSE=(docker-compose)
+        fi ;;
+esac
+
 # macOS on non-APFS volumes (exFAT/FAT/network shares) litters AppleDouble
 # "._*" files. BuildKit fails to read their xattrs during the context walk,
 # which breaks `docker compose build` even though .dockerignore lists them.
@@ -37,19 +71,19 @@ check() {
     fi
 }
 
-# 1. Check Docker is installed
-echo "Checking Docker installation..."
-docker --version >/dev/null 2>&1
-check "Docker is installed"
+# 1. Check the container engine is installed
+echo "Checking ${ENGINE:-container engine} installation..."
+command -v "${ENGINE:-docker}" >/dev/null 2>&1
+check "Container engine is installed"
 
-docker compose version >/dev/null 2>&1
-check "Docker Compose is available"
+[ "${#COMPOSE[@]}" -gt 0 ] && "${COMPOSE[@]}" version >/dev/null 2>&1
+check "Compose front-end is available"
 echo ""
 
-# 2. Check Docker daemon is running
-echo "Checking Docker daemon..."
-docker ps >/dev/null 2>&1
-check "Docker daemon is running"
+# 2. Check the daemon / machine is running
+echo "Checking ${ENGINE:-container engine} daemon..."
+[ -n "$ENGINE" ] && "$ENGINE" ps >/dev/null 2>&1
+check "Container engine is running"
 echo ""
 
 # 3. Check evidence directory exists
@@ -77,35 +111,35 @@ check "docs/scenario.md exists"
 echo ""
 
 # 5. Try to build the container
-echo "Testing Docker build..."
-docker compose build >/dev/null 2>&1
-check "Docker image builds successfully"
+echo "Testing image build..."
+"${COMPOSE[@]}" build >/dev/null 2>&1
+check "Container image builds successfully"
 echo ""
 
 # 6. Test container startup
 echo "Testing container startup..."
-docker compose run --rm dfir echo "Container test" >/dev/null 2>&1
+"${COMPOSE[@]}" run --rm dfir echo "Container test" >/dev/null 2>&1
 check "Container starts and runs commands"
 echo ""
 
 # 7. Verify forensic tools
 echo "Verifying forensic tools..."
-docker compose run --rm dfir fls -V >/dev/null 2>&1
+"${COMPOSE[@]}" run --rm dfir fls -V >/dev/null 2>&1
 check "Sleuth Kit (fls) is available"
 
-docker compose run --rm dfir ewfverify -V >/dev/null 2>&1
+"${COMPOSE[@]}" run --rm dfir ewfverify -V >/dev/null 2>&1
 check "libewf (ewfverify) is available"
 
-docker compose run --rm dfir md5sum --version >/dev/null 2>&1
+"${COMPOSE[@]}" run --rm dfir md5sum --version >/dev/null 2>&1
 check "Hash tools (md5sum) are available"
 echo ""
 
 # 8. Test volume mounts
 echo "Testing volume mounts..."
-docker compose run --rm dfir test -d /evidence
+"${COMPOSE[@]}" run --rm dfir test -d /evidence
 check "Evidence directory is mounted at /evidence"
 
-docker compose run --rm dfir test -w /cases
+"${COMPOSE[@]}" run --rm dfir test -w /cases
 check "Cases directory is writable at /cases"
 echo ""
 
@@ -114,7 +148,7 @@ echo "Checking immersive features..."
 [ -x "./scripts/forensics-workstation" ]
 check "forensics-workstation script is available and executable"
 
-docker compose run --rm dfir which coc-log >/dev/null 2>&1
+"${COMPOSE[@]}" run --rm dfir which coc-log >/dev/null 2>&1
 check "coc-log utility is available in container"
 
 [ -f "./templates/analysis_log.csv" ]
@@ -156,14 +190,13 @@ if [ $FAILED -eq 0 ]; then
     echo "  3. Get a memory sample:    see docs/evidence-sources.md  (Lab 2)"
     echo "  4. Start your investigation:"
     echo "     • Recommended: ./scripts/forensics-workstation"
-    echo "     • Advanced: docker compose run --rm dfir"
+    echo "     • Advanced: ${COMPOSE[*]} run --rm dfir"
     echo ""
 else
     echo -e "${RED}⚠️  Some checks failed. Please review the errors above.${NC}"
     echo ""
     echo "Common fixes:"
-    echo "  • Start Docker Desktop (Windows/Mac)"
-    echo "  • Run: sudo systemctl start docker (Linux)"
+    echo "  • Start Docker Desktop (Windows/Mac) or run: podman machine start (Podman)"
     echo "  • Ensure you're in the correct directory"
     echo "  • Check README.md troubleshooting section"
     echo ""

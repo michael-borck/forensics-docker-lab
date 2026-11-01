@@ -2,7 +2,22 @@
 set -euo pipefail
 
 # Container-based E01 conversion - works on Mac, Windows, and Linux
-# Converts usb.img to E01 format using Docker
+# Converts usb.img to E01 format using the container engine (Docker or Podman).
+
+ENGINE="${CONTAINER_ENGINE:-}"
+if [ -z "$ENGINE" ]; then
+  if command -v docker >/dev/null 2>&1; then ENGINE=docker
+  elif command -v podman >/dev/null 2>&1; then ENGINE=podman
+  fi
+fi
+[ -n "$ENGINE" ] || { echo "No container engine found (Docker or Podman)." >&2; exit 1; }
+if [ "$ENGINE" = podman ]; then
+  if podman compose version >/dev/null 2>&1; then COMPOSE=(podman compose)
+  else COMPOSE=(podman-compose); fi
+else
+  if docker compose version >/dev/null 2>&1; then COMPOSE=(docker compose)
+  else COMPOSE=(docker-compose); fi
+fi
 
 IMG="evidence/usb.img"
 E01="evidence/usb.e01"
@@ -16,7 +31,7 @@ echo "[*] Converting $IMG to E01 format using Docker..."
 echo "[*] This creates an industry-standard E01 evidence file"
 
 # Use the dfir container to convert to E01 format
-docker compose run --rm dfir bash -c "
+"${COMPOSE[@]}" run --rm dfir bash -c "
 echo '[*] Converting /evidence/usb.img to /evidence/usb.e01...'
 ewfexport -c -t 'Cloudcore Investigation - Lab 1 Practice Image' -e 'Digital Forensics Training' -o /evidence/usb.e01 /evidence/usb.img
 

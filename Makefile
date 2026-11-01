@@ -1,5 +1,13 @@
 .PHONY: start verify setup help evidence gui gui-stop
 
+# Container engine: Docker by default; set CONTAINER_ENGINE=podman to use Podman.
+ENGINE ?= $(if $(CONTAINER_ENGINE),$(CONTAINER_ENGINE),$(shell command -v docker >/dev/null 2>&1 && echo docker || echo podman))
+ifeq ($(ENGINE),podman)
+COMPOSE := $(shell podman compose version >/dev/null 2>&1 && echo "podman compose" || echo "podman-compose")
+else
+COMPOSE := docker compose
+endif
+
 help:
 	@echo "Digital Forensics Lab - Quick Commands"
 	@echo ""
@@ -21,9 +29,9 @@ help:
 	@echo ""
 
 setup:
-	@echo "Building Docker containers for forensic analysis..."
+	@echo "Building the forensic analysis containers..."
 	@echo ""
-	docker compose build
+	$(COMPOSE) build
 	@echo ""
 	@echo "✓ Build complete! Next: make evidence (Lab 1 USB image)"
 	@echo ""
@@ -54,12 +62,12 @@ start:
 
 gui:
 	@echo "Starting Autopsy GUI (browser)..."
-	@docker compose up -d novnc autopsy
+	@$(COMPOSE) up -d novnc autopsy
 	@echo ""
 	@echo "✓ Autopsy ready in your browser:  http://localhost:8080/vnc.html"
 	@echo "  Stop with: make gui-stop"
 
 gui-stop:
 	@echo "Stopping Autopsy GUI..."
-	@docker compose stop novnc autopsy
+	@$(COMPOSE) stop novnc autopsy
 	@echo "✓ GUI stopped. (Your /cases and /evidence are unchanged.)"

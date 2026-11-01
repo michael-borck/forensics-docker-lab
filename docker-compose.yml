@@ -26,8 +26,8 @@ services:
     devices:                        # Enable FUSE for ewfmount and xmount
       - /dev/fuse
     cap_add:                        # Add capabilities for FUSE
-      - SYS_ADMIN
-      - DAC_OVERRIDE
+      - SYS_ADMIN                   # Podman: use rootful (SYS_ADMIN is not
+      - DAC_OVERRIDE                # available to a rootless container)
     security_opt:
       - apparmor=unconfined        # Required for FUSE on some systems
     # Note: No 'command' specified - uses Dockerfile CMD (/bin/bash) by default
@@ -38,6 +38,7 @@ services:
     # case guide is worse than a stale one.
     image: log2timeline/plaso:20260720
     platform: linux/amd64  # published amd64-only; runs emulated on Apple Silicon (fine — batch CLI)
+                           # Podman: install qemu-user-static/binfmt in the machine; Docker Desktop includes it
     user: "${PUID:-1000}:${PGID:-1000}"
     read_only: true
     working_dir: /cases
@@ -68,6 +69,7 @@ services:
     # Pinned by digest: :latest is the only tag published.
     image: theasp/novnc@sha256:6e4f7346150b07983c4bc0d445a6fb227302aed8d00fbfd9cfdf81b07f68851d
     platform: linux/amd64  # published amd64-only; runs emulated on Apple Silicon (fine — lightweight proxy)
+                           # Podman: needs binfmt/qemu-user-static in the machine, as above
     ports:
       - "${LAB_BIND:-127.0.0.1}:8080:8080"
     environment:
