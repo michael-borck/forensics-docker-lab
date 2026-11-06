@@ -188,6 +188,8 @@ CONTAINER_ENGINE=podman ./start.sh
 CONTAINER_ENGINE=podman make verify
 ```
 
+If no compose front-end is installed, `./start.sh` offers `bash scripts/setup-user.sh` (no root). If GHCR is blocked, `./scripts/make-offline-zip.sh` builds a student ZIP; the launcher loads its `images/` automatically.
+
 Use **rootful** Podman for the full DFIR toolbox — the `dfir` container needs
 `/dev/fuse`, `SYS_ADMIN` and `DAC_OVERRIDE` for `ewfmount`/`xmount`. On
 macOS/Windows:

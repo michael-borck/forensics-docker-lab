@@ -30,3 +30,7 @@ _archive
 .vscode/
 .idea/
 *.swp
+
+# Offline image packs
+images/
+dist/
